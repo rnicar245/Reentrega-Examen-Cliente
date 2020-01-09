@@ -17,7 +17,7 @@
 
     let empleado = function(){
         let ventana = window.open("", "", "top=0,left=0,width=1000,height=1000");
-        ventana.document.write("<html><head><script src=\"validar.js\"></script></head><body id=\"body\">"
+        ventana.document.write("<html><head><script src=\"validar.js\"></script><script src=\"Empleado.js\"></script></head><body id=\"body\">"
         + "<label>Nombre <input type=\"text\" id=\"nombre\"/></label>"
         + "<p id=\"errorNombre\"></p><br>"
         + "<label>Fecha nacimiento <input type=\"date\" id=\"fecha\"></label><br><br>"
