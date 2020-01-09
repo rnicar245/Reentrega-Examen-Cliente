@@ -25,9 +25,12 @@
 
     let validarNombre = function(){
         nombre = document.getElementById("nombre").value;
+        let nombreReg = new RegExp("[A-ZÑÁÉÍÓÚÑ][a-zñóáéíú]+[ ]?[A-ZÑÁÉÍÓÚÑ][a-zñóáéíú]+[ ]?[A-ZÑÁÉÍÓÚÑ][a-zñóáéíú]+[ ]?");
         if(nombre == ""){
             document.getElementById("errorNombre").innerHTML = "ERROR: El nombre no puede estar vacío.";
             return false;
+        }else if(!nombreReg.test(nombre)){
+            document.getElementById("errorNombre").innerHTML = "ERROR: El formato del nombre es incorrecto (El nombre y los apellidos comienzan por mayúscula seguidos de minúsculas).";
         }
         document.getElementById("errorNombre").innerHTML = "";
         return true;  
@@ -35,21 +38,18 @@
 
     let validarFecha = function(){
         fecha = document.getElementById("fecha").value;
-        let fechaReg = new RegExp("[0-9][0-9]([/-])[0-9][0-9]([/-])[0-9][0-9][0-9][0-9]");
+        let fechaReg = new RegExp("[0-9][0-9][0-9][0-9]([/-])[0-9][0-9]([/-])[0-9][0-9]");
         if(fecha == ""){
-            document.getElementById("errorFecha").innerHTML = "ERROR: La fecha no puede estar vacía.";
+            document.getElementById("errorFecha").innerHTML = "ERROR: La fecha es incorrecta.";
             return false;
         }else if(!fechaReg.test(fecha)){
-            document.getElementById("errorFecha").innerHTML = "ERROR: El formato de la fecha es incorrecto.";
+            document.getElementById("errorFecha").innerHTML = "ERROR: El formato de la fecha es incorrecto. (YYYY-MM-DD)";
             return false;
         }else if(fechaReg.test(fecha)){
             if(RegExp.$1 != RegExp.$2){
-                document.getElementById("errorFecha").innerHTML = "ERROR: El formato de la fecha es incorrecto.";
+                document.getElementById("errorFecha").innerHTML = "ERROR: El formato de la fecha es incorrecto. (Puedes usar / o - para separar la fecha, pero no ambos.)";
                 return false;
             }
-        }else if (!(((initYear % 4 == 0) && (initYear % 100 != 0 )) || (initYear % 400 == 0))){
-            document.getElementById("errorFecha").innerHTML = "ERROR: El formato de la fecha es incorrecto.";
-            return false;
         }
         document.getElementById("errorFecha").innerHTML = "";
         return true;  
