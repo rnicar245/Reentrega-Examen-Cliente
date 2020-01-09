@@ -56,7 +56,7 @@
     let generarMensajeHora = function(fechaHoy){  
         let horas = fechaHoy.getHours();
         let minutos = fechaHoy.getMinutes(); 
-        horaString = calculaStringHora(horas, minutos);
+        let horaString = calculaStringHora(horas, minutos);
 
         if(horas >= 18){
             return "Son las"+horaString+". Ya es hora de que dejes de trabajar. Hay que conciliar la vida laboral con la familiar";
