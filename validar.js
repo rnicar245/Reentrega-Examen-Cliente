@@ -7,11 +7,19 @@
     let fecha;
     let dni;
 
+    let errorNombre;
+    let errorFecha;
+    let errorDni;
+
     let iniciar = function(){
         document.getElementById("nombre").onblur = validarNombre;
         document.getElementById("fecha").onblur = validarFecha;
         document.getElementById("dni").onblur = validarDNI;
         document.getElementById("nuevoEmpleado").addEventListener("click", validarFormulario);
+
+        errorNombre = document.getElementById("errorNombre");
+        errorFecha = document.getElementById("errorFecha");
+        errorDni = document.getElementById("errorDni");
     }
 
     let validarFormulario = function(){
@@ -27,12 +35,12 @@
         nombre = document.getElementById("nombre").value;
         let nombreReg = new RegExp("[A-ZÑÁÉÍÓÚÑ][a-zñóáéíú]+[ ]?[A-ZÑÁÉÍÓÚÑ][a-zñóáéíú]+[ ]?[A-ZÑÁÉÍÓÚÑ][a-zñóáéíú]+[ ]?");
         if(nombre == ""){
-            document.getElementById("errorNombre").innerHTML = "ERROR: El nombre no puede estar vacío.";
+            errorNombre.innerHTML = "ERROR: El nombre no puede estar vacío.";
             return false;
         }else if(!nombreReg.test(nombre)){
-            document.getElementById("errorNombre").innerHTML = "ERROR: El formato del nombre es incorrecto (El nombre y los apellidos comienzan por mayúscula seguidos de minúsculas).";
+            errorNombre.innerHTML = "ERROR: El formato del nombre es incorrecto (El nombre y los apellidos comienzan por mayúscula seguidos de minúsculas).";
         }
-        document.getElementById("errorNombre").innerHTML = "";
+        errorNombre.innerHTML = "";
         return true;  
     }
 
@@ -40,18 +48,18 @@
         fecha = document.getElementById("fecha").value;
         let fechaReg = new RegExp("[0-9][0-9][0-9][0-9]([/-])[0-9][0-9]([/-])[0-9][0-9]");
         if(fecha == ""){
-            document.getElementById("errorFecha").innerHTML = "ERROR: La fecha es incorrecta.";
+            errorFecha.innerHTML = "ERROR: La fecha es incorrecta.";
             return false;
         }else if(!fechaReg.test(fecha)){
-            document.getElementById("errorFecha").innerHTML = "ERROR: El formato de la fecha es incorrecto. (YYYY-MM-DD)";
+            errorFecha.innerHTML = "ERROR: El formato de la fecha es incorrecto. (YYYY-MM-DD)";
             return false;
         }else if(fechaReg.test(fecha)){
             if(RegExp.$1 != RegExp.$2){
-                document.getElementById("errorFecha").innerHTML = "ERROR: El formato de la fecha es incorrecto. (Puedes usar / o - para separar la fecha, pero no ambos.)";
+                errorFecha.innerHTML = "ERROR: El formato de la fecha es incorrecto. (Puedes usar / o - para separar la fecha, pero no ambos.)";
                 return false;
             }
         }
-        document.getElementById("errorFecha").innerHTML = "";
+        errorFecha.innerHTML = "";
         return true;  
     }
 
@@ -60,20 +68,20 @@
         const arrayLetras = ['T', 'R', 'W', 'A', 'G', 'M', 'Y', 'F', 'P', 'D', 'X', 'B', 'N', 'J', 'Z', 'S', 'Q', 'V', 'H', 'L', 'C', 'K', 'E', 'T'];
         let dniReg = new RegExp("([0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9])[- ]?([A-Z])");
         if(dni == ""){
-            document.getElementById("errorDni").innerHTML = "ERROR: El DNI no puede estar vacío.";
+            errorDni.innerHTML = "ERROR: El DNI no puede estar vacío.";
             return false;
         }else if(!dniReg.test(dni)){
             console.log(RegExp.$1);
-            document.getElementById("errorDni").innerHTML = "ERROR: El formato del DNI es incorrecto.";
+            errorDni.innerHTML = "ERROR: El formato del DNI es incorrecto.";
             return false;
         }else if(dniReg.test(dni)){
             if(RegExp.$2 != arrayLetras[RegExp.$1%23]){
-                document.getElementById("errorDni").innerHTML = "ERROR: La letra introducida no es correcta.";
+                errorDni.innerHTML = "ERROR: La letra introducida no es correcta.";
                 return false;
             }    
         }
 
-        document.getElementById("errorDni").innerHTML = "";
+        errorDni.innerHTML = "";
         return true;  
     }
 
