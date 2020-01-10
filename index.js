@@ -20,7 +20,7 @@
         ventana.document.write("<html><head><script src=\"validar.js\"></script><script src=\"Empleado.js\"></script></head><body id=\"body\">"
         + "<label>Nombre <input type=\"text\" id=\"nombre\"/></label>"
         + "<p id=\"errorNombre\"></p><br>"
-        + "<label>Fecha nacimiento <input type=\"date\" id=\"fecha\"></label><br><br>"
+        + "<label>Fecha nacimiento <input type=\"text\" id=\"fecha\"></label><br><br>"
         + "<p id=\"errorFecha\"></p><br>"
         + "<label>DNI <input type=\"text\" id=\"dni\"/></label><br><br>"
         + "<p id=\"errorDni\"></p><br>"
