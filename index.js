@@ -9,7 +9,7 @@
     }
 
     let deTodoUnPoco = function(){
-        let ventana = window.open("", "", "top=0,left=0,width=1000,height=1000");
+        let ventana = window.open("", "", "top=0,left=0,width=200,height=200");
         ventana.document.write("<html><head><script src=\"detodounpoco.js\"></script></head><body id=\"body\">"
         + "<button id=\"informa\">Informa</button><button id=\"salir\">Salir</button></body></html>");
         ventana.document.close();
