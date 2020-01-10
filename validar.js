@@ -47,18 +47,32 @@
 
     let validarFecha = function(){
         fecha = document.getElementById("fecha").value;
-        let fechaReg = new RegExp("[0-9][0-9][0-9][0-9]([/-])[0-9][0-9]([/-])[0-9][0-9]");
+        let fechaReg = new RegExp("([0-9][0-9])([/-])([0-9][0-9])([/-])([0-9][0-9][0-9][0-9])");
+        let fechaExec = fechaReg.exec(fecha);
+        let fechaActual = new Date();
+        let mensajeFechaNac = "ERROR: La fecha de nacimiento es mayor que la actual.";
+        let fechaObjeto = new Date(`${fechaExec[5]}/${fechaExec[3]}/${fechaExec[1]}`);
         if(fecha == ""){
-            errorFecha.innerHTML = "ERROR: La fecha es incorrecta.";
+            errorFecha.innerHTML = "ERROR: La fecha no puede estar vacía.";
             return false;
         }else if(!fechaReg.test(fecha)){
-            errorFecha.innerHTML = "ERROR: El formato de la fecha es incorrecto. (YYYY-MM-DD)";
+            errorFecha.innerHTML = "ERROR: El formato de la fecha es incorrecto. (DD-MM-AAAA)";
             return false;
-        }else if(fechaReg.test(fecha)){
-            if(RegExp.$1 != RegExp.$2){
+        }else if(fechaExec[2] != fechaExec[4]){
                 errorFecha.innerHTML = "ERROR: El formato de la fecha es incorrecto. (Puedes usar / o - para separar la fecha, pero no ambos.)";
                 return false;
-            }
+        }else if(Number(fechaExec[1]) != fechaObjeto.getDate() || Number(fechaExec[3]) != fechaObjeto.getMonth() +1 || Number(fechaExec[5]) != fechaObjeto.getFullYear()){
+            errorFecha.innerHTML = "ERROR: La fecha es incorrecta (Ejemplo: día 45 de febrero).";
+            return false;
+        }else if(fechaExec[5] > fechaActual.getFullYear()){
+                errorFecha.innerHTML = mensajeFechaNac;
+                return false;
+        }else if(fechaExec[5] == fechaActual.getFullYear() && fechaExec[3] > (fechaActual.getMonth() +1)){
+            errorFecha.innerHTML = mensajeFechaNac;
+            return false;
+        }else if(fechaExec[3] == (fechaActual.getMonth() +1) && fechaExec[1] > fechaActual.getDate()){
+            errorFecha.innerHTML = mensajeFechaNac;
+            return false;
         }
         errorFecha.innerHTML = "";
         return true;  
@@ -66,20 +80,18 @@
 
     let validarDNI = function(){
         dni = document.getElementById("dni").value.toUpperCase();
-        const arrayLetras = ['T', 'R', 'W', 'A', 'G', 'M', 'Y', 'F', 'P', 'D', 'X', 'B', 'N', 'J', 'Z', 'S', 'Q', 'V', 'H', 'L', 'C', 'K', 'E', 'T'];
+        const letras = "TRWAGMYFPDXBNJZSQVHLCKET";
         let dniReg = new RegExp("([0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9])[- ]?([A-Z])");
+        let dniExec = dniReg.exec(dni);
         if(dni == ""){
             errorDni.innerHTML = "ERROR: El DNI no puede estar vacío.";
             return false;
         }else if(!dniReg.test(dni)){
-            console.log(RegExp.$1);
             errorDni.innerHTML = "ERROR: El formato del DNI es incorrecto.";
             return false;
-        }else if(dniReg.test(dni)){
-            if(RegExp.$2 != arrayLetras[RegExp.$1%23]){
+        }else if(dniExec[2] != letras[dniExec[1]%23]){
                 errorDni.innerHTML = "ERROR: La letra introducida no es correcta.";
                 return false;
-            }    
         }
 
         errorDni.innerHTML = "";
