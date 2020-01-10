@@ -10,7 +10,7 @@
     }
 
     Empleado.prototype.crearNuevaVentana = function(){
-        let ventana = window.open("", "", "top=0,left=0,width=1000,height=1000");
+        let ventana = window.open("", "", "top=0,left=0,width=100,height=300");
         ventana.document.write("<html><head></head><body>"
         + "<h2>Nombre:</h2>"
         + "<h3>"+this.getNombre()+"</h3><br>"
