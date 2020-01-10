@@ -38,7 +38,8 @@
             errorNombre.innerHTML = "ERROR: El nombre no puede estar vacío.";
             return false;
         }else if(!nombreReg.test(nombre)){
-            errorNombre.innerHTML = "ERROR: El formato del nombre es incorrecto (El nombre y los apellidos comienzan por mayúscula seguidos de minúsculas).";
+            errorNombre.innerHTML = "ERROR: El formato del nombre es incorrecto (El nombre y los apellidos comienzan por mayúscula seguidos de minúsculas. Ej Nombre Apellido1 Apellido2).";
+            return false;
         }
         errorNombre.innerHTML = "";
         return true;  
