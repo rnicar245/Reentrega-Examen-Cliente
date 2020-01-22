@@ -3,9 +3,10 @@
  */
 
 {
-    let nombre;
-    let fecha;
-    let dni;
+    //let nombre;
+    let nombreInput;
+    let fechaInput;
+    let dniInput;
 
     let errorNombre;
     let errorFecha;
@@ -17,6 +18,10 @@
         document.getElementById("dni").addEventListener("blur", validarDNI);
         document.getElementById("nuevoEmpleado").addEventListener("click", validarFormulario);
 
+        nombreInput = document.getElementById("nombre");
+        fechaInput = document.getElementById("fecha");
+        dniInput = document.getElementById("dni");
+
         errorNombre = document.getElementById("errorNombre");
         errorFecha = document.getElementById("errorFecha");
         errorDni = document.getElementById("errorDni");
@@ -24,15 +29,15 @@
 
     let validarFormulario = function(){
         if(validarNombre() && validarDNI() && validarFecha()){
-            new Empleado(nombre, fecha, dni).crearNuevaVentana();
-            document.getElementById("nombre").value = "";
-            document.getElementById("fecha").value = "";
-            document.getElementById("dni").value = "";
+            new Empleado(nombreInput.value, fechaInput.value, dniInput.value).crearNuevaVentana();
+            nombreInput.value = "";
+            fechaInput.value = "";
+            dniInput.value = "";
         }
     }
 
     let validarNombre = function(){
-        nombre = document.getElementById("nombre").value;
+        let nombre = nombreInput.value;
         let nombreReg = new RegExp("[A-ZÑÁÉÍÓÚÑ][a-zñóáéíú]+[ ]?[A-ZÑÁÉÍÓÚÑ][a-zñóáéíú]+[ ]?[A-ZÑÁÉÍÓÚÑ][a-zñóáéíú]+[ ]?");
         if(nombre == ""){
             errorNombre.innerHTML = "ERROR: El nombre no puede estar vacío.";
@@ -47,7 +52,7 @@
     }
 
     let validarFecha = function(){
-        fecha = document.getElementById("fecha").value;
+        let fecha = fechaInput.value;
         let fechaReg = new RegExp("^([0-9][0-9])([/-])([0-9][0-9])([/-])([0-9][0-9][0-9][0-9])$");
         let fechaExec = fechaReg.exec(fecha);
 
@@ -75,7 +80,7 @@
     }
 
     let validarDNI = function(){
-        dni = document.getElementById("dni").value.toUpperCase();
+        let dni = dniInput.value.toUpperCase();
         const letras = "TRWAGMYFPDXBNJZSQVHLCKET";
         let dniReg = new RegExp("([0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9])[- ]?([A-Z])");
         let dniExec = dniReg.exec(dni);
@@ -91,7 +96,6 @@
                 errorDni.innerHTML = "ERROR: La letra introducida no es correcta.";
                 return false;
         }
-
         errorDni.innerHTML = "";
         return true;  
     }
