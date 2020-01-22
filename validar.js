@@ -37,7 +37,8 @@
         if(nombre == ""){
             errorNombre.innerHTML = "ERROR: El nombre no puede estar vacío.";
             return false;
-        }else if(!nombreReg.test(nombre)){
+        }
+        if(!nombreReg.test(nombre)){
             errorNombre.innerHTML = "ERROR: El formato del nombre es incorrecto (El nombre y los apellidos comienzan por mayúscula seguidos de minúsculas. Ej Nombre Apellido1 Apellido2).";
             return false;
         }
@@ -55,22 +56,28 @@
         if(fecha == ""){
             errorFecha.innerHTML = "ERROR: La fecha no puede estar vacía.";
             return false;
-        }else if(!fechaReg.test(fecha)){
+        }
+        if(!fechaReg.test(fecha)){
             errorFecha.innerHTML = "ERROR: El formato de la fecha es incorrecto. (DD-MM-AAAA)";
             return false;
-        }else if(fechaExec[2] != fechaExec[4]){
+        }
+        if(fechaExec[2] != fechaExec[4]){
                 errorFecha.innerHTML = "ERROR: El formato de la fecha es incorrecto. (Puedes usar / o - para separar la fecha, pero no ambos.)";
                 return false;
-        }else if(Number(fechaExec[1]) != fechaObjeto.getDate() || Number(fechaExec[3]) != fechaObjeto.getMonth() +1 || Number(fechaExec[5]) != fechaObjeto.getFullYear()){
+        }
+        if(Number(fechaExec[1]) != fechaObjeto.getDate() || Number(fechaExec[3]) != fechaObjeto.getMonth() +1 || Number(fechaExec[5]) != fechaObjeto.getFullYear()){
             errorFecha.innerHTML = "ERROR: La fecha es incorrecta (Ejemplo: día 45 de febrero).";
             return false;
-        }else if(fechaExec[5] > fechaActual.getFullYear()){
+        }
+        if(fechaExec[5] > fechaActual.getFullYear()){
                 errorFecha.innerHTML = mensajeFechaNac;
                 return false;
-        }else if(fechaExec[5] == fechaActual.getFullYear() && fechaExec[3] > (fechaActual.getMonth() +1)){
+        }
+        if(fechaExec[5] == fechaActual.getFullYear() && fechaExec[3] > (fechaActual.getMonth() +1)){
             errorFecha.innerHTML = mensajeFechaNac;
             return false;
-        }else if(fechaExec[3] == (fechaActual.getMonth() +1) && fechaExec[1] > fechaActual.getDate()){
+        }
+        if(fechaExec[3] == (fechaActual.getMonth() +1) && fechaExec[1] > fechaActual.getDate()){
             errorFecha.innerHTML = mensajeFechaNac;
             return false;
         }
@@ -86,10 +93,12 @@
         if(dni == ""){
             errorDni.innerHTML = "ERROR: El DNI no puede estar vacío.";
             return false;
-        }else if(!dniReg.test(dni)){
+        }
+        if(!dniReg.test(dni)){
             errorDni.innerHTML = "ERROR: El formato del DNI es incorrecto.";
             return false;
-        }else if(dniExec[2] != letras[dniExec[1]%23]){
+        }
+        if(dniExec[2] != letras[dniExec[1]%23]){
                 errorDni.innerHTML = "ERROR: La letra introducida no es correcta.";
                 return false;
         }
