@@ -56,7 +56,7 @@
     let generarMensajeHora = function(fechaHoy){  
         let horas = fechaHoy.getHours();
         let minutos = fechaHoy.getMinutes(); 
-        let horaString = calculaStringHora(horas, minutos);
+        let horaString = calculaString(horas)+":"+calculaString(minutos);
 
         if(horas >= 18){
             return "Son las"+horaString+". Ya es hora de que dejes de trabajar. Hay que conciliar la vida laboral con la familiar";
@@ -66,24 +66,12 @@
             return "Son las "+horaString+". Pronto llegan las vacaciones. Aguanta."; 
         }
     }
-
-    let calculaStringHora = function(horas, minutos){
-        let horasString;
-        let minutosString;
-
-        if(horas <= 9){
-            horasString = "0"+horas;
-        }else{
-            horasString = horas+"";
+    
+    let calculaString = function(tiempo){
+        if(tiempo <= 9){
+            return tiempoString = "0"+tiempo;
         }
-
-        if(minutos <= 9){
-            minutosString = "0"+minutos;
-        }else{
-            minutosString = minutos+"";
-        }
-
-        return horasString+":"+minutosString;
+        return tiempoString = tiempo+"";
     }
 
     let salir = function(){
