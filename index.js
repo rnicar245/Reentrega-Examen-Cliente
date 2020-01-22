@@ -33,11 +33,11 @@
             </head>
             <body id='body'>
                 <label>Nombre <input type='text' id='nombre'/></label>
-                <p id='errorNombre'></p><br>
+                <p style='color:red' id='errorNombre'></p><br>
                 <label>Fecha nacimiento <input type='text' id='fecha'></label><br><br>
-                <p id='errorFecha'></p><br>
+                <p style='color:red' id='errorFecha'></p><br>
                 <label>DNI <input type='text' id='dni'/></label><br><br>
-                <p id='errorDni'></p><br>
+                <p style='color:red' id='errorDni'></p><br>
                 <button id='nuevoEmpleado'>nuevo Empleado</button>
             </body>
         </html>`);
