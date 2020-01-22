@@ -48,37 +48,26 @@
 
     let validarFecha = function(){
         fecha = document.getElementById("fecha").value;
-        let fechaReg = new RegExp("([0-9][0-9])([/-])([0-9][0-9])([/-])([0-9][0-9][0-9][0-9])");
+        let fechaReg = new RegExp("^([0-9][0-9])([/-])([0-9][0-9])([/-])([0-9][0-9][0-9][0-9])$");
         let fechaExec = fechaReg.exec(fecha);
-        let fechaActual = new Date();
-        let mensajeFechaNac = "ERROR: La fecha de nacimiento es mayor que la actual.";
-        let fechaObjeto = new Date(`${fechaExec[5]}/${fechaExec[3]}/${fechaExec[1]}`);
+
         if(fecha == ""){
             errorFecha.innerHTML = "ERROR: La fecha no puede estar vacía.";
             return false;
         }
-        if(!fechaReg.test(fecha)){
+        if(fechaExec == null){
             errorFecha.innerHTML = "ERROR: El formato de la fecha es incorrecto. (DD-MM-AAAA)";
             return false;
         }
+
+        let fechaObjeto = new Date(`${fechaExec[5]}/${fechaExec[3]}/${fechaExec[1]}`);
+        
         if(fechaExec[2] != fechaExec[4]){
-                errorFecha.innerHTML = "ERROR: El formato de la fecha es incorrecto. (Puedes usar / o - para separar la fecha, pero no ambos.)";
-                return false;
+            errorFecha.innerHTML = "ERROR: El formato de la fecha es incorrecto. (Puedes usar / o - para separar la fecha, pero no ambos.)";
+            return false;
         }
         if(Number(fechaExec[1]) != fechaObjeto.getDate() || Number(fechaExec[3]) != fechaObjeto.getMonth() +1 || Number(fechaExec[5]) != fechaObjeto.getFullYear()){
             errorFecha.innerHTML = "ERROR: La fecha es incorrecta (Ejemplo: día 45 de febrero).";
-            return false;
-        }
-        if(fechaExec[5] > fechaActual.getFullYear()){
-                errorFecha.innerHTML = mensajeFechaNac;
-                return false;
-        }
-        if(fechaExec[5] == fechaActual.getFullYear() && fechaExec[3] > (fechaActual.getMonth() +1)){
-            errorFecha.innerHTML = mensajeFechaNac;
-            return false;
-        }
-        if(fechaExec[3] == (fechaActual.getMonth() +1) && fechaExec[1] > fechaActual.getDate()){
-            errorFecha.innerHTML = mensajeFechaNac;
             return false;
         }
         errorFecha.innerHTML = "";
