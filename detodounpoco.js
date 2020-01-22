@@ -44,7 +44,7 @@
                 dia = "viernes";
                 break;
             case 6:
-                dia = "sabado";
+                dia = "sábado";
                 break;
             case 0:
                 dia = "domingo";
