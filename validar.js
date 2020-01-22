@@ -12,9 +12,9 @@
     let errorDni;
 
     let iniciar = function(){
-        document.getElementById("nombre").onblur = validarNombre;
-        document.getElementById("fecha").onblur = validarFecha;
-        document.getElementById("dni").onblur = validarDNI;
+        document.getElementById("nombre").addEventListener("blur", validarNombre);
+        document.getElementById("fecha").addEventListener("blur", validarFecha);
+        document.getElementById("dni").addEventListener("blur", validarDNI);
         document.getElementById("nuevoEmpleado").addEventListener("click", validarFormulario);
 
         errorNombre = document.getElementById("errorNombre");
