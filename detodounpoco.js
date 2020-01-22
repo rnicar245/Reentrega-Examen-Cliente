@@ -68,9 +68,8 @@
     }
 
     let calculaStringHora = function(horas, minutos){
-        let horasString = "";
-        let minutosString = "";
-        let horaString = "";
+        let horasString;
+        let minutosString;
 
         if(horas <= 9){
             horasString = "0"+horas;
